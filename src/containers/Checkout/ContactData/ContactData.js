@@ -10,6 +10,7 @@ class ContactData extends Component {
   state = {
     orderForm: {
       name: {
+        label: "Name",
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -23,6 +24,7 @@ class ContactData extends Component {
         touched: false,
       },
       street: {
+        label: "Street",
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -36,6 +38,7 @@ class ContactData extends Component {
         touched: false,
       },
       zipCode: {
+        label: "Zip Code",
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -51,6 +54,7 @@ class ContactData extends Component {
         touched: false,
       },
       country: {
+        label: "Country",
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -64,6 +68,7 @@ class ContactData extends Component {
         touched: false,
       },
       email: {
+        label: "E-Mail Address",
         elementType: "input",
         elementConfig: {
           type: "text",
@@ -77,6 +82,7 @@ class ContactData extends Component {
         touched: false,
       },
       deliverMethod: {
+        label: "Delivery Method",
         elementType: "select",
         elementConfig: {
           options: [
@@ -174,6 +180,7 @@ class ContactData extends Component {
         {formElementsArray.map((formElement) => (
           <Input
             key={formElement.id}
+            label={formElement.config.label}
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
