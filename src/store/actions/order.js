@@ -22,13 +22,12 @@ export const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
   return (dispatch) => {
     dispatch(purchaseBurgerStart());
     axios
-      .post("/orders.json", orderData) //This is only for firebase -> .json on the end of endpoint
+      .post("/orders.json?auth=" + token, orderData) //This is only for firebase -> .json on the end of endpoint
       .then((response) => {
-        console.log(response.data);
         dispatch(purchaseBurgerSucess(response.data, orderData));
       })
       .catch((error) => {
@@ -63,11 +62,12 @@ export const fetchOrdersFail = (error) => {
   };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token, userId) => {
   return (dispatch) => {
-    dispatch(fetchOrderStart())
+    dispatch(fetchOrderStart());
+    const queryParams = "?auth=" + token + "&orderBy=\"userId\"&equalTo=\"" + userId + "\"";
     axios
-      .get("orders.json")
+      .get("orders.json" + queryParams)
       .then((response) => {
         const fetchedOrders = [];
         for (let key in response.data) {

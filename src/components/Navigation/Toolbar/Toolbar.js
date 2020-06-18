@@ -9,7 +9,7 @@ const toolbar = (props) => (
         <MenuButton clicked={props.sideDrawerOpened}/>
         <Logo height="80%" />
         <nav className={styles.DesktopOnly}>
-            <NavigationItems />
+            <NavigationItems isAuthenticated={props.isAuthenticated} />
         </nav>
     </header>
 );
