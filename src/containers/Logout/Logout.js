@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
-import * as actions from '../../store/actions/index';
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import * as actions from "../../store/actions/index";
+import { connect } from "react-redux";
 
-class Logout extends Component {
-    componentDidMount() {
-        this.props.onLogout();
-    }
+const Logout = (props) => {
+  const {onLogout} = props
 
-    render() {
-        return <Redirect to="/" />;
-    }
-}
+  useEffect(() => {
+    props.onLogout();
+  }, [onLogout]);
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onLogout: () => dispatch(actions.logout())
-    };
+  return <Redirect to="/" />;
 };
 
-export default connect(null, mapDispatchToProps)(Logout)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLogout: () => dispatch(actions.logout()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Logout);
